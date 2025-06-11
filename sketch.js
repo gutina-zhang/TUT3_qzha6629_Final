@@ -131,7 +131,50 @@ function setup() {
     }
   }
   
-  
+  // Main drawing loop
+  function draw() {
+    background(240);
+    noStroke();
+    //* Set the background color to light gray
+    
+    // Draw the yellow background lines
+    for (let i = 0; i< yellowRects.length; i++) {
+      let yellow = yellowRects[i];
+      // Gradient color
+      for (let j = 0; j < 800; j++) {
+        stroke(lerpColor[i][j]);
+        if (yellow.w == width) {
+        line(j, yellow.y, j, yellow.y + yellow.h);
+      } else if (yellow.h == height) {
+        line(yellow.x, j, yellow.x + yellow.w, j);
+      }
+      }
+    }
+
+    // Draw Big Rectangle
+    for (let i = 0; i < bigRects.length; i++) {
+      let bigRect = bigRects[i];
+      noStroke();
+      fill(bigRect.c)
+      rect(bigRect.x, bigRect.y, bigRect.w, bigRect.h);
+      fill(250, 201, 1);
+      rect(bigRect.x + 20, bigRect.y + 20, bigRect.w - 40, bigRect.h - 40);
+
+      // Move only after you start
+      if (isStart) {
+       if (bigRect.dy != 0) { 
+        // Check the up and down movement boundaries
+        if (
+          bigRect.y + bigRect.h >= bigRect.boundsEnd |
+          bigRect.y <= bigRect.boundStart
+        ) {
+          //
+        }
+    }
+
+  }
+}
+
 
 function draw() {
   background(220);
