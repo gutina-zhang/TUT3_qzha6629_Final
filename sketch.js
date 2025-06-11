@@ -168,14 +168,30 @@ function setup() {
           bigRect.y + bigRect.h >= bigRect.boundsEnd |
           bigRect.y <= bigRect.boundStart
         ) {
-          //
+          // Rebound
+          bigRect.dy = bigRect.dy * -1;
+          // Play the Music
+          reboundSound.play();
         }
+        bigRect.y += bigRect.dy;
+    } else if (bigRect.dx != 0) {
+      // Check the left and right movement boundaries
+      if (
+          bigRect.x + bigRect.w >= bigRect.boundsEnd |
+          bigRect.x <= bigRect.boundsStart
+      ) {
+          // Rebound
+          bigRect.dy = bigRect.dy * -1;
+          // Play the Music
+          reboundSound.play();
+      }
+      bigRect.x += bigRect.dx;
     }
 
   }
 }
 
+  //Draw Small Rectangle
+  
 
-function draw() {
-  background(220);
-}
+
