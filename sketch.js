@@ -1,18 +1,24 @@
 // Yellow Rectangle
 let yellowRects = [];
 let rectWidth = 20;
+
 // Color
 let colors = [];
+
 // Move rectangle 
 let moveRects = [];
+
 // Big rectangle
 let bigRects = [];
+
 // Audio
 let reboundSound;
 let bgmSound;
 let lerpColorsPair = [];
+
 // Gradient color array
 let lerpColors = [];
+
 // The signal whether the animation starts
 let isStart = false;
 
@@ -72,6 +78,28 @@ function setup() {
     [color(255, 192, 203), color(250,201, 1)],
     [color(255, 192, 203), color(250,201, 1)],
   ];
+
+  // Rebound big rectangle position, size, color, motor movement and rebound boarder
+  bigRects = [
+    {
+      x: 320, y: 190, 
+      w: 100, h: 80,
+      c: colors[1],
+      dx: 2, dy: 0,
+      boundsStart: 540,
+      boundsEnd: width, 
+    },
+    {x: 620, y: 190,
+      w: 100, h: 80,
+      c: colors[1],
+      dx: 2, dy: 0,
+      boundsStart: 540,
+      boundsEnd: width, 
+    },
+    {
+      
+    }
+  ]
 }
 
 function draw() {
