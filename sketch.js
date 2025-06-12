@@ -95,11 +95,11 @@ function setup() {
       boundsStart: 160, boundsEnd: 320, //* The range where it can move — it will bounce back at the edges.
     },
     {
-      x: 620, y: 190,
+      x: 610, y: 190,
       w: 100, h: 80,
       c: colors[1],
       dx: 2, dy: 0,
-      boundsStart: 540, boundsEnd: width,
+      boundsStart: 500, boundsEnd: width,
     },
     {
       x: 620, y: 630,
