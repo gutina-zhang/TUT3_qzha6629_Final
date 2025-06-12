@@ -39,7 +39,7 @@ Hikoko Ito Happy Birthday 2U2
 
 I have a cheerful outlook on life, despite the imperfections encountered in society.  This highlights the significance of positivity and the necessity of safeguarding our energy.  I intend to utilise cheerful work music as the primary lyrics, supplemented by concise and impactful phrases to convey that while there are limitations, maintaining a good outlook on life is acceptable. 
 
-The large rectangles have all been modified to identical sizes but varying colours:  The essence of power is straightforward; thus, do not fear and seek for daily happiness. In addition, the colour of the thick lines has been altered to signify that the road is a product of people's diligent efforts. The movement of little rectangles transitioning from pink or blue to yellow on the map demonstrates consistent maturation.  The pink and blue signify gender.
+The number of large rectangles have reduce and they have all been modified to identical sizes but varying colours: The essence of power is straightforward; thus, do not fear and seek for daily happiness. In addition, the colour of the thick lines has been altered to signify that the road is a product of people's diligent efforts. The movement of little rectangles transitioning from pink or blue to yellow on the map demonstrates consistent maturation.  The pink and blue signify gender.
 
 # Technical Explanation
 ```javascript <br>
@@ -58,14 +58,6 @@ let bgmSound;
 
 let lerpColorsPair = [];
 //* Array of colour-pairs used to build gradients.
-
-// Gradient color array
-let lerpColors = [];
-//* Two-dimensional array; every inner list is a pre-computed gradient (800 colours) derived from one pair above.
-
-// The signal whether the animation starts
-let isStart = false;
-//* Boolean flag: false by default, becomes true after first click.
 ```
 
 1. I use yellowRects = [], bigRects = [] to define yellow, big rectangles respectively and change its parameter. The name of these code are clearly to distinguish compare to only using rects() and define its parameter.
@@ -76,9 +68,37 @@ let isStart = false;
 
 5. lerpColorsPair = [] is used to 18 pairs (pink ➜ yellow, blue ➜ yellow, …), and each pair will become one row in lerpColors.
 
+
+```javascript <br>
+// Initialize the gradient color
+  for (let i = 0; i < lerpColorsPair.length; i++) {
+    let cList = lerpColorsPair[i]; //* cList now holds two p5.Color objects—the start and end colour for this gradient strip.
+    lerpColors[i] = [];
+    for (let j = 0; j < 800; j++) {
+      let c = lerpColor(cList[0], cList[1], j / 800);
+      lerpColors[i].push(c);
+    }
+    } 
+```
 6. lerpColors = [] + cList = [] makes the colour shifts smoothly from cList[0] on the far left to cList[1] on the far right.
 
-7. 
+```javascript <br>
+// The signal whether the animation starts
+let isStart = false;
+//* Boolean flag: false by default, becomes true after first click.
+
+// Mouse click event handling
+function mousePressed() {
+  
+  // Click to start the animation
+  isStart = true;
+  if(!bgmSound.isLooping()) {
+    bgmSound.loop();
+    //* Loops background music if it isn’t already playing.
+  }
+}
+```
+7. isStart = false is a Boolean flag: false by default, becomes isStart = true after first click. This needs a click to the page to start the animation. 
 
 
 
