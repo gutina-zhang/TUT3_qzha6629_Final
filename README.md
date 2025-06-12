@@ -66,7 +66,7 @@ let lerpColors = [];
 // The signal whether the animation starts
 let isStart = false;
 //* Boolean flag: false by default, becomes true after first click.
-<br>
+```
 
 1. I use yellowRects = [], bigRects = [] to define yellow, big rectangles respectively and change its parameter. The name of these code are clearly to distinguish compare to only using rects() and define its parameter.
 
