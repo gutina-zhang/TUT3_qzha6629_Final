@@ -23,6 +23,7 @@ This audio edition reflects my own unique imagination.  The rapid pace of global
 
 ![Nusra Latif Qureshi Birds in Far Pavilions](https://www.datocms-assets.com/42890/1702532743-202-2019-mm.jpg?dpr=1.5&fit=max&fm=webp&iptc=allow&w=1500)
 Nusra Latif Qureshi: Birds in Far Pavilions 
+![Nusra Latif Qureshi Birds in Far Pavilions](https://www.artgallery.nsw.gov.au/whats-on/exhibitions/nusra-latif-qureshi/)
 
 I started to search similar topic which matches my assuption. This artwork further inspires me to consider how many individuals in society face numerous constraints, such as oversight from superiors, politicians, and extensive data surveillance.  These constraints are commonplace throughout our lives.  Nevertheless, despite an outwardly joyful and orderly existence, individuals are constrained by numerous factors.
 
@@ -67,7 +68,17 @@ let isStart = false;
 //* Boolean flag: false by default, becomes true after first click.
 <br>
 
-I use yellowRects = [], bigRects = [] to define yellow, big rectangles respectively and change its parameter.
+1. I use yellowRects = [], bigRects = [] to define yellow, big rectangles respectively and change its parameter. The name of these code are clearly to distinguish compare to only using rects() and define its parameter.
+
+2. reboundSound.play() is instantaneous and non-looping. It is used to add "rebound.m4a," because the big rectangles need to rebound among the white area.
+
+3. bgmSound.loop() starts playback and repeats indefinitely until you call .stop() or refresh the page. I use it when adding "bgm.mp3." This is to serve for small rectangles' movement.
+
+5. lerpColorsPair = [] is used to 18 pairs (pink ➜ yellow, blue ➜ yellow, …), and each pair will become one row in lerpColors.
+
+6. lerpColors = [] + cList = [] makes the colour shifts smoothly from cList[0] on the far left to cList[1] on the far right.
+
+7. 
 
 
 

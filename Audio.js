@@ -134,18 +134,17 @@ function setup() {
       generateRandomRectangles(yellow.x, -1, "y");
     }
   }
-
      //* Ensuring that small rectangles only move along full-length yellow bars, keeping the animation clean and organized.
     
   // Initialize the gradient color
   for (let i = 0; i < lerpColorsPair.length; i++) {
-    let cList = lerpColorsPair[i];
+    let cList = lerpColorsPair[i]; //* cList now holds two p5.Color objects—the start and end colour for this gradient strip.
     lerpColors[i] = [];
     for (let j = 0; j < 800; j++) {
       let c = lerpColor(cList[0], cList[1], j / 800);
       lerpColors[i].push(c);
     }
-    }
+    } //* The colour shifts smoothly from cList[0] on the far left to cList[1] on the far right.
   }
   
   // Main drawing loop
