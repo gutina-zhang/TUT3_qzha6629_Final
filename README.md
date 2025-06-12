@@ -41,7 +41,7 @@ I have a cheerful outlook on life, despite the imperfections encountered in soci
 The large rectangles have all been modified to identical sizes but varying colours:  The essence of power is straightforward; thus, do not fear and seek for daily happiness. In addition, the colour of the thick lines has been altered to signify that the road is a product of people's diligent efforts. The movement of little rectangles transitioning from pink or blue to yellow on the map demonstrates consistent maturation.  The pink and blue signify gender.
 
 # Technical Explanation
-<br>
+```javascript <br>
 // Yellow Rectangle
 let yellowRects = [];
 //* Array of objects that describe every yellow background line (x, y, w, h).
