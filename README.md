@@ -27,6 +27,7 @@ Nusra Latif Qureshi: Birds in Far Pavilions
 I started to search similar topic which matches my assuption. This artwork further inspires me to consider how many individuals in society face numerous constraints, such as oversight from superiors, politicians, and extensive data surveillance.  These constraints are commonplace throughout our lives.  Nevertheless, despite an outwardly joyful and orderly existence, individuals are constrained by numerous factors.
 
 Every coin has two sides; most individuals select to live their lives positively and joyfully.  They exert considerable effort and exist with their own luminosity.  Life is vibrant and orderly. The picture below inspires me the positivity of life: You cannot change it, so you brace it and to be happy. There are happy things in life, so to be happy and energetic. The birthday benediction event at the New South Wales Art Gallery allows visitors to compose blessing letters for strangers who share the same birthday, regardless of their location.  They obtain the letter and return new blessing letters.  Consequently, authenticity and joy consistently manifested within the community.
+[References from Hikoko Ito Happy Birthday 2U2](https://www.artgallery.nsw.gov.au/whats-on/exhibitions/hikoko-ito/)
 
 Hikoko Ito Happy Birthday 2U2
 ![Hikoko Ito Happy Birthday 2U2](https://www.datocms-assets.com/42890/1742248383-20250312hikoko_137_hero.jpg?dpr=0.75&fit=max&fm=webp&iptc=allow&w=2000)
@@ -40,13 +41,33 @@ I have a cheerful outlook on life, despite the imperfections encountered in soci
 The large rectangles have all been modified to identical sizes but varying colours:  The essence of power is straightforward; thus, do not fear and seek for daily happiness. In addition, the colour of the thick lines has been altered to signify that the road is a product of people's diligent efforts. The movement of little rectangles transitioning from pink or blue to yellow on the map demonstrates consistent maturation.  The pink and blue signify gender.
 
 # Technical Explanation
-<br>let yellowRects = [];
-    let bigRects = [];
-    let reboundSound;
-    let bgmSound;
-    let lerpColorsPair = [];
-    let lerpColors = [];
-    let isStart = false;
 <br>
+// Yellow Rectangle
+let yellowRects = [];
+//* Array of objects that describe every yellow background line (x, y, w, h).
+
+// Big rectangle
+//* Array of large animated rectangles that bounce.
+let bigRects = [];
+
+// Audio
+//* p5.SoundFile objects for SFX and background music.
+let reboundSound;
+let bgmSound;
+
+let lerpColorsPair = [];
+//* Array of colour-pairs used to build gradients.
+
+// Gradient color array
+let lerpColors = [];
+//* Two-dimensional array; every inner list is a pre-computed gradient (800 colours) derived from one pair above.
+
+// The signal whether the animation starts
+let isStart = false;
+//* Boolean flag: false by default, becomes true after first click.
+<br>
+
+I use yellowRects = [], bigRects = [] to define yellow, big rectangles respectively and change its parameter.
+
 
 
