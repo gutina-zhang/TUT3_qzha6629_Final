@@ -94,7 +94,8 @@ function setup() {
       dx: 0, dy: 2,
       boundsStart: 160, boundsEnd: 320, //* The range where it can move — it will bounce back at the edges.
     },
-    {x: 620, y: 190,
+    {
+      x: 620, y: 190,
       w: 100, h: 80,
       c: colors[1],  // color
       dx: 2, dy: 0, // Moves horizontally
@@ -102,7 +103,7 @@ function setup() {
     }, 
 
     {
-      x: 620, y: 190,
+      x: 620, y: 630,
       w: 100, h: 80,
       c: colors[2],
       dx: 0, dy: 2,
@@ -115,12 +116,13 @@ function setup() {
     let yellow = yellowRects[i];
 
     // Only generate on rectangles that fill the screen horizontally or vertically
-   if (yellow.w == width) {
+    if (yellow.w == width) {
       generateRandomRectangles(-1, yellow.y, "x");
     } else if (yellow.h == height) {
       generateRandomRectangles(yellow.x, -1, "y");
     }
   }
+
      //* Ensuring that small rectangles only move along full-length yellow bars, keeping the animation clean and organized.
     
   // Initialize the gradient color
@@ -141,7 +143,7 @@ function setup() {
     //* Set the background color to light gray
     
     // Draw the yellow background lines
-    for (let i = 0; i< yellowRects.length; i++) {
+    for (let i = 0; i < yellowRects.length; i++) {
       let yellow = yellowRects[i];
       // Gradient color
       for (let j = 0; j < 800; j++) {
@@ -205,6 +207,13 @@ function setup() {
     if (isStart) {
       if (moveRect.type == "x") {
         // Horizontal Movement
+        moveRect.x += moveRect.speed * moveRect.direction;
+        // Check the up and down movement boundaries
+        if (moveRect.x > height - rectWidth || moveRect.x < 0) {
+          moveRect.direction = moveRect.direction * -1;
+        }
+      } else if (moveRect.type == "y") {
+        // Longitudinal movement
         moveRect.y += moveRect.speed * moveRect.direction;
         // Check the up and down movement boundaries
         if (moveRect.y > height - rectWidth || moveRect.y < 0) {
