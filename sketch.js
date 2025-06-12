@@ -1,25 +1,26 @@
 // Yellow Rectangle
 let yellowRects = [];
 //* Array of objects that describe every yellow background line (x, y, w, h).
+
 let rectWidth = 20;
 //* Stroke-thickness of those yellow lines (20 px).
 
 // Color
-let colors = []; 
 //* Will hold three p5.Color objects (blue, red, grey).
+let colors = []; 
 
 // Move rectangle 
-let moveRects = [];
 //* Array that will store small moving rectangles created at runtime.
+let moveRects = [];
 
 // Big rectangle
-let bigRects = [];
 //* Array of large animated rectangles that bounce.
+let bigRects = [];
 
 // Audio
+//* p5.SoundFile objects for SFX and background music.
 let reboundSound;
 let bgmSound;
-//* p5.SoundFile objects for SFX and background music.
 
 let lerpColorsPair = [];
 //* Array of colour-pairs used to build gradients.
@@ -48,6 +49,7 @@ function setup() {
   colors = [color(34, 80, 149), color(221, 1, 0), color(200, 200, 200)];
 
   // The yellow background lines
+  //*The position and the size of the rectangles
   yellowRects = [
     { x: 0, y: 20, w: width, h: rectWidth },
     { x: 0, y: 140, w: width, h: rectWidth },
@@ -68,7 +70,7 @@ function setup() {
     { x: 520, y: 380, w: rectWidth, h: 620 },
     { x: 600, y: 380, w: rectWidth, h: 180 },
   ]; 
-  //*The position and the size of the rectangles
+
 
   // Gradient color array
   lerpColorsPair = [
@@ -155,6 +157,7 @@ function setup() {
     // Draw the yellow background lines
     for (let i = 0; i < yellowRects.length; i++) {
       let yellow = yellowRects[i];
+
       // Gradient color
       for (let j = 0; j < 800; j++) {
         stroke(lerpColors[i][j]);
@@ -162,6 +165,7 @@ function setup() {
         line(j, yellow.y, j, yellow.y + yellow.h);
         //* Creates a subtle vertical (or horizontal) gradient across each bar.
       } 
+
       else if (yellow.h == height) {
         line(yellow.x, j, yellow.x + yellow.w, j);
       }
@@ -180,11 +184,13 @@ function setup() {
       // Move only after you start
       if (isStart) {
        if (bigRect.dy != 0) { 
+
         // Check the up and down movement boundaries
         if (
           bigRect.y + bigRect.h >= bigRect.boundsEnd ||
           bigRect.y <= bigRect.boundsStart
         ) {
+
           // Rebound
           bigRect.dy = bigRect.dy * -1;
           // Play the Music
@@ -218,15 +224,19 @@ function setup() {
     // Move only after you start
     if (isStart) {
       if (moveRect.type == "x") {
+
         // Horizontal Movement
         moveRect.x += moveRect.speed * moveRect.direction;
+
         // Check the up and down movement boundaries
         if (moveRect.x > height - rectWidth || moveRect.x < 0) {
           moveRect.direction = moveRect.direction * -1;
         }
       } else if (moveRect.type == "y") {
+
         // Longitudinal movement
         moveRect.y += moveRect.speed * moveRect.direction;
+
         // Check the up and down movement boundaries
         if (moveRect.y > height - rectWidth || moveRect.y < 0) {
           moveRect.direction = moveRect.direction * -1;
@@ -240,21 +250,28 @@ function setup() {
 function generateRandomRectangles(x, y, type) {
   // Generate 10 rectangles
   for (let i = 0; i < 10; i++) {
+
     //random color
     let colorIndex = floor(random(colors.length));
+
     // Declare the variables xx and yy for storing the x and y coordinates of the randomly generated rectangle
     let xx, yy;
+
     // If the movement type of the rectangle is horizontal ('x')
     if (type == "x") {
+
       // Randomly generate the x-coordinate of the rectangle, with the range being the width of the canvas
        xx = random(30, width - 30);
+
        // The y-coordinate of the rectangle is fixed to the passed y-value
        yy = y;
     }
        // If the movement type of the rectangle is vertical ('y')
         else if (type == "y") {
+
           // The x-coordinate of the rectangle is fixed to the passed x value
            xx = x;
+
            // Randomly generate the y-coordinate of the rectangle, with the range being the height of the canvas
            yy = random(30, height - 30);
     }
@@ -271,6 +288,7 @@ function generateRandomRectangles(x, y, type) {
 
 // Mouse click event handling
 function mousePressed() {
+  
   // Click to start the animation
   isStart = true;
   if(!bgmSound.isLooping()) {
