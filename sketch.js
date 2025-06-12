@@ -1,28 +1,37 @@
 // Yellow Rectangle
 let yellowRects = [];
-//* An array that stores all your yellow background lines (rectangles).
+//* Array of objects that describe every yellow background line (x, y, w, h).
 let rectWidth = 20;
-//* The thickness of lines
+//* Stroke-thickness of those yellow lines (20 px).
 
 // Color
-let colors = [];
+let colors = []; 
+//* Will hold three p5.Color objects (blue, red, grey).
 
 // Move rectangle 
 let moveRects = [];
+//* Array that will store small moving rectangles created at runtime.
 
 // Big rectangle
 let bigRects = [];
+//* Array of large animated rectangles that bounce.
 
 // Audio
 let reboundSound;
 let bgmSound;
+//* p5.SoundFile objects for SFX and background music.
+
 let lerpColorsPair = [];
+//* Array of colour-pairs used to build gradients.
 
 // Gradient color array
 let lerpColors = [];
+//* Two-dimensional array; every inner list is a pre-computed gradient (800 colours) derived from one pair above.
 
 // The signal whether the animation starts
 let isStart = false;
+//* Boolean flag: false by default, becomes true after first click.
+
 
 // Preload
 //* Preventation of of missing music when play the animation
@@ -82,28 +91,30 @@ function setup() {
     [color(255, 192, 203), color(250,201, 1)],
     [color(255, 192, 203), color(250,201, 1)],
   ]; 
-  //* To create a smooth blend between these two colors. These pairs correspond to background gradients.
+  //* 18 pairs (pink ➜ yellow, blue ➜ yellow, …), and each pair will become one row in lerpColors.
 
   // Rebound big rectangle position, size, color, motor movement and rebound boarder
   //* These lines below are large, animated rectangles.
   bigRects = [
     {
-      x: 320, y: 190, 
-      w: 100, h: 80,
-      c: colors[0], 
-      dx: 0, dy: 2,
-      boundsStart: 160, boundsEnd: 320, //* The range where it can move — it will bounce back at the edges.
+      x: 320, y: 190, w: 100, h: 80, //* Position + size
+      c: colors[0],  
+      //* 	Fill colour chosen from colors array.
+
+      dx: 0, dy: 2,  
+      //* Per-frame velocity. One axis is zero, so each rect moves either horizontally or vertically.
+
+      boundsStart: 160, boundsEnd: 320, 
+      //* Range in which it may travel; hitting either limit flips the velocity sign and triggers a sound.
     },
     {
-      x: 610, y: 190,
-      w: 100, h: 80,
+      x: 610, y: 190, w: 100, h: 80,
       c: colors[1],
       dx: 2, dy: 0,
       boundsStart: 500, boundsEnd: width,
     },
     {
-      x: 620, y: 630,
-      w: 100, h: 80,
+      x: 620, y: 630, w: 100, h: 80,
       c: colors[2],
       dx: 0, dy: 2,
       boundsStart: 580, boundsEnd: height - 40, 
@@ -116,7 +127,7 @@ function setup() {
 
     // Only generate on rectangles that fill the screen horizontally or vertically
     if (yellow.w == width) {
-      generateRandomRectangles(-1, yellow.y, "x");
+      generateRandomRectangles(-1, yellow.y, "x"); 
     } else if (yellow.h == height) {
       generateRandomRectangles(yellow.x, -1, "y");
     }
@@ -149,7 +160,9 @@ function setup() {
         stroke(lerpColors[i][j]);
         if (yellow.w == width) {
         line(j, yellow.y, j, yellow.y + yellow.h);
-      } else if (yellow.h == height) {
+        //* Creates a subtle vertical (or horizontal) gradient across each bar.
+      } 
+      else if (yellow.h == height) {
         line(yellow.x, j, yellow.x + yellow.w, j);
       }
     }
@@ -160,9 +173,9 @@ function setup() {
       let bigRect = bigRects[i];
       noStroke();
       fill(bigRect.c)
-      rect(bigRect.x, bigRect.y, bigRect.w, bigRect.h);
+      rect(bigRect.x, bigRect.y, bigRect.w, bigRect.h);  //* outer frame
       fill(250, 201, 1);
-      rect(bigRect.x + 20, bigRect.y + 20, bigRect.w - 40, bigRect.h - 40);
+      rect(bigRect.x + 20, bigRect.y + 20, bigRect.w - 40, bigRect.h - 40); //* inner
 
       // Move only after you start
       if (isStart) {
@@ -262,5 +275,6 @@ function mousePressed() {
   isStart = true;
   if(!bgmSound.isLooping()) {
     bgmSound.loop();
+    //* Loops background music if it isn’t already playing.
   }
 }
