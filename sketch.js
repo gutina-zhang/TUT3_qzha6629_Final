@@ -97,11 +97,10 @@ function setup() {
     {
       x: 620, y: 190,
       w: 100, h: 80,
-      c: colors[1],  // color
-      dx: 2, dy: 0, // Moves horizontally
-      boundsStart: 540, boundsEnd: width, 
-    }, 
-
+      c: colors[1],
+      dx: 2, dy: 0,
+      boundsStart: 540, boundsEnd: width,
+    },
     {
       x: 620, y: 630,
       w: 100, h: 80,
@@ -186,7 +185,7 @@ function setup() {
           bigRect.x <= bigRect.boundsStart
       ) {
           // Rebound
-          bigRect.dx = bigRect.d * -1;
+          bigRect.dx = bigRect.dx * -1;
           // Play the Music
           reboundSound.play();
       }
@@ -252,7 +251,7 @@ function generateRandomRectangles(x, y, type) {
       c: colors[colorIndex],
       speed: random(1, 3),
       direction: random([1, -1]),
-      type:type,
+      type: type,
     })
   }
 }
