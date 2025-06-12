@@ -58,7 +58,8 @@ function setup() {
     { x: 520, y: 0, w: rectWidth, h: 320 },
     { x: 520, y: 380, w: rectWidth, h: 620 },
     { x: 600, y: 380, w: rectWidth, h: 180 },
-  ]; //*The position and the size of the rectangles
+  ]; 
+  //*The position and the size of the rectangles
 
   // Gradient color array
   lerpColorsPair = [
@@ -80,7 +81,8 @@ function setup() {
     [color(255, 192, 203), color(250,201, 1)],
     [color(255, 192, 203), color(250,201, 1)],
     [color(255, 192, 203), color(250,201, 1)],
-  ]; //* To create a smooth blend between these two colors. These pairs correspond to background gradients.
+  ]; 
+  //* To create a smooth blend between these two colors. These pairs correspond to background gradients.
 
   // Rebound big rectangle position, size, color, motor movement and rebound boarder
   //* These lines below are large, animated rectangles.
@@ -88,9 +90,9 @@ function setup() {
     {
       x: 320, y: 190, 
       w: 100, h: 80,
-      c: colors[1], //Red
-      dx: 2, dy: 0,
-      boundsStart: 540, boundsEnd: width, //* The range where it can move — it will bounce back at the edges.
+      c: colors[0], 
+      dx: 0, dy: 2,
+      boundsStart: 160, boundsEnd: 320, //* The range where it can move — it will bounce back at the edges.
     },
     {x: 620, y: 190,
       w: 100, h: 80,
@@ -103,7 +105,7 @@ function setup() {
       x: 620, y: 190,
       w: 100, h: 80,
       c: colors[2],
-      dx: 2, dy: 0,
+      dx: 0, dy: 2,
       boundsStart: 580, boundsEnd: height - 40, 
     },
   ];
@@ -111,8 +113,9 @@ function setup() {
   // Randomly generate small moving rectangles in a yellow background
   for (let i = 0; i < yellowRects.length; i++) {
     let yellow = yellowRects[i];
+
     // Only generate on rectangles that fill the screen horizontally or vertically
-    if (yellow.w == width) {
+   if (yellow.w == width) {
       generateRandomRectangles(-1, yellow.y, "x");
     } else if (yellow.h == height) {
       generateRandomRectangles(yellow.x, -1, "y");
@@ -142,14 +145,14 @@ function setup() {
       let yellow = yellowRects[i];
       // Gradient color
       for (let j = 0; j < 800; j++) {
-        stroke(lerpColor[i][j]);
+        stroke(lerpColors[i][j]);
         if (yellow.w == width) {
         line(j, yellow.y, j, yellow.y + yellow.h);
       } else if (yellow.h == height) {
         line(yellow.x, j, yellow.x + yellow.w, j);
       }
-      }
     }
+  }
 
     // Draw Big Rectangle
     for (let i = 0; i < bigRects.length; i++) {
@@ -165,8 +168,8 @@ function setup() {
        if (bigRect.dy != 0) { 
         // Check the up and down movement boundaries
         if (
-          bigRect.y + bigRect.h >= bigRect.boundsEnd |
-          bigRect.y <= bigRect.boundStart
+          bigRect.y + bigRect.h >= bigRect.boundsEnd ||
+          bigRect.y <= bigRect.boundsStart
         ) {
           // Rebound
           bigRect.dy = bigRect.dy * -1;
@@ -177,11 +180,11 @@ function setup() {
     } else if (bigRect.dx != 0) {
       // Check the left and right movement boundaries
       if (
-          bigRect.x + bigRect.w >= bigRect.boundsEnd |
+          bigRect.x + bigRect.w >= bigRect.boundsEnd ||
           bigRect.x <= bigRect.boundsStart
       ) {
           // Rebound
-          bigRect.dy = bigRect.dy * -1;
+          bigRect.dx = bigRect.d * -1;
           // Play the Music
           reboundSound.play();
       }
